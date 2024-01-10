@@ -5,10 +5,11 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.SocketException;
 
+
 public class Cliente {
 
     public static void main(String[] args) {
-        final String SERVIDOR_IP = "127.0.0.1"; // Cambia esto con la IP del servidor
+        final String SERVIDOR_IP = "127.0.0.1"; 
         final int SERVIDOR_PUERTO = 12345;
 
         try {
@@ -45,7 +46,7 @@ public class Cliente {
             // Iniciar el hilo de lectura
             hiloLectura.start();
 
-            // Bucle para leer las entradas del usuario y enviarlas al servidor
+            // Bucle para leer las entradas del usuario y enviarlas al servidor (esto podría hacerse también en un hilo)
             String userInput;
             while ((userInput = lectorTeclado.readLine()) != null) {
                 salida.println(userInput);
