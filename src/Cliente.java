@@ -1,15 +1,23 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.ConnectException;
 import java.net.Socket;
 import java.net.SocketException;
-
 
 public class Cliente {
 
     public static void main(String[] args) {
-        final String SERVIDOR_IP = "127.0.0.1"; 
+        try {
+            System.setOut(new PrintStream(System.out, true, "UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        final String SERVIDOR_IP = "127.0.0.1";
         final int SERVIDOR_PUERTO = 12345;
 
         try {
@@ -46,7 +54,8 @@ public class Cliente {
             // Iniciar el hilo de lectura
             hiloLectura.start();
 
-            // Bucle para leer las entradas del usuario y enviarlas al servidor (esto podría hacerse también en un hilo)
+            // Bucle para leer las entradas del usuario y enviarlas al servidor (esto podría
+            // hacerse también en un hilo)
             String userInput;
             while ((userInput = lectorTeclado.readLine()) != null) {
                 salida.println(userInput);
@@ -61,6 +70,9 @@ public class Cliente {
             // Cerrar la conexión al finalizar
             socket.close();
 
+        } catch (ConnectException e){
+            System.out.println("Se ha rechazado la conexión.");
+            System.out.println("example ●");
         } catch (IOException e) {
             e.printStackTrace();
         }

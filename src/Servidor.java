@@ -65,7 +65,7 @@ public class Servidor {
                 System.out.println("Esperando conexión para el cliente " + nombreCliente);
                 socketCliente = server.accept();
 
-                System.out.println("Cliente " + nombreCliente + "conectado!");
+                System.out.println("Cliente " + nombreCliente + " conectado!");
                 Scanner entrada = new Scanner(socketCliente.getInputStream());
                 PrintWriter salida = new PrintWriter(socketCliente.getOutputStream(), true);
 
